@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<PMML version="4.3" xmlns="http://www.dmg.org/PMML-4_3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_3 http://www.dmg.org/pmml/v4-3/pmml-4-3.xsd">
+ <Header copyright="Copyright (c) 2018 lenovo" description="Generalized Linear Regression Model">
+  <Extension name="user" value="lenovo" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2018-03-22 16:07:19</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="2">
+  <DataField name="actual" optype="continuous" dataType="double"/>
+  <DataField name="pred_odds" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <GeneralRegressionModel modelName="General_Regression_Model" modelType="generalizedLinear" functionName="regression" algorithmName="glm" distribution="binomial" linkFunction="logit">
+  <MiningSchema>
+   <MiningField name="actual" usageType="predicted" invalidValueTreatment="returnInvalid"/>
+   <MiningField name="pred_odds" usageType="active" invalidValueTreatment="returnInvalid"/>
+  </MiningSchema>
+  <Output>
+   <OutputField name="Predicted_actual" feature="predictedValue"/>
+  </Output>
+  <ParameterList>
+   <Parameter name="p0" label="(Intercept)"/>
+   <Parameter name="p1" label="pred_odds"/>
+  </ParameterList>
+  <CovariateList>
+   <Predictor name="pred_odds"/>
+  </CovariateList>
+  <PPMatrix>
+   <PPCell value="1" predictorName="pred_odds" parameterName="p1"/>
+  </PPMatrix>
+  <ParamMatrix>
+   <PCell parameterName="p0" df="1" beta="0.493876249702204"/>
+   <PCell parameterName="p1" df="1" beta="1.29599313168824"/>
+  </ParamMatrix>
+ </GeneralRegressionModel>
+</PMML>
